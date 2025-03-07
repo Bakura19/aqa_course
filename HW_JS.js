@@ -1,26 +1,22 @@
 // 1. Дана строка из четного количества цифр. Проверьте, что сумма первой половины цифр равняется сумме второй половине цифр. 
 // Если это так - выведите 'да', в противном случае выведите 'нет'.
 
+function isBalancedNumber(num) {
+    let str = num.toString(); 
+    let halfLength = str.length / 2; 
+
+    let firstHalf = str.slice(0, halfLength);
+    let secondHalf = str.slice(halfLength);
+
+    function sumNumbers(str) {
+        return str.split('').reduce((sum, digit) => sum + Number(digit), 0);
+    }
+
+    console.log(sumNumbers(firstHalf) === sumNumbers(secondHalf) ? 'Да' : 'Нет');
+}
+
 let testNum = 38046855;
-let testStr = testNum.toString(); 
-
-let firstHalf = testStr.slice(0, 4); 
-let secondHalf = testStr.slice(4);   
-
-function sumNumbers(str) {
-    return str
-        .split('')           
-        .reduce((sum, numbers) => sum + Number(numbers), 0); 
-}
-
-let sumFirstHalf = sumNumbers(firstHalf);
-let sumSecondHalf = sumNumbers(secondHalf);
-
-if (sumFirstHalf === sumSecondHalf) {
-    console.log('Да')
-} else {
-    console.log('Нет')
-}
+isBalancedNumber(testNum);
 
 
 // 2. Дано число n=1000 (может быть заданное любое число). Делите его на 2 столько раз, пока результат деления не станет меньше 50 (может быть любое заданное число). 
@@ -60,33 +56,23 @@ let finalArr = console.log(addItemsToArr(arr1, 3, 'a', 'b', 'c'));
 // 5. Напишите функцию, которая вставит данные в массив в заданные несколько мест в массиве. Дан массив [1, 2, 3, 4, 5]. 
 // Сделайте из него массив [1, 'a', 'b', 2, 3, 4, 'c', 5, 'e'].
 
-// Option 1
+function addItemsToArr(arr, insertions) {
+    let sortedInsertions = Object.entries(insertions).sort((a, b) => b[0] - a[0]);
+    sortedInsertions.forEach(([index, values]) => {
+        arr.splice(Number(index), 0, ...values);
+    });
+
+    return arr;
+}
 
 let arr2 = [1, 2, 3, 4, 5];
+let insertions = {
+    1: ['a', 'b'],
+    6: ['c'],
+    8: ['e']
+};
 
-function addItemsToArr(arr2, ind, ...items) {
-    arr2.splice(1, 0, 'a', 'b'); 
-    arr2.splice(6, 0, 'c');      
-    arr2.splice(8, 0, 'e'); 
-    return arr2;
-}
-
-console.log(addItemsToArr(arr2));
-
-// Option 2
-
-let arr3 = [1, 2, 3, 4, 5];
-
-function addItemsToArr(arr3, ind, ...items) {
-    arr3.splice(ind, 0, ...items); 
-    return arr3;
-}
-
-let firstAdd = addItemsToArr(arr3, 1, 'a', 'b');  
-let secondAdd = addItemsToArr(arr3, 6, 'c');        
-let finalAdd = addItemsToArr(arr3, 8, 'e');
-
-console.log(finalAdd);
+console.log(addItemsToArr([...arr2], insertions));
 
 // 6. Дан массив [3, 4, 1, 2, 7. 30. 50]. Отсортируйте его
 
