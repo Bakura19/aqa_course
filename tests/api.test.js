@@ -91,6 +91,32 @@ test("The positive test. To update user info", async () => {
   expect(response.data.password).toEqual("testPassword");
 })
 
+
+test("The negative test. To check 4** status code using unavailable method for this reqeust", async () => {
+  try {
+    await axios.post("https://fakerestapi.azurewebsites.net/api/v1/Users/2", {
+      id: "test",
+      userName: 111,
+      password: 222
+    })
+  } catch (error) {
+    expect(error.response.status).toBe(405)
+  }
+});
+
+test("The negative test. To check 4** status code using incorrect data types for test data", async () => {
+  try {
+    await axios.put("https://fakerestapi.azurewebsites.net/api/v1/Users/2", {
+      id: "test",
+      userName: 111,
+      password: 222
+    })
+  } catch (error) {
+    expect(error.response.status).toBe(400)
+  }
+});
+
+
 // Test for DELETE request /api/v1/Users/{id}
 
 test("The positive test. To update user info", async () => {
