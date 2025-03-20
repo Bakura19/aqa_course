@@ -1,4 +1,10 @@
 const axios = require("axios");
+const Ajv = require("ajv");
+const userSchema = require("../schemas/userSchema");
+const errorSchema = require("../schemas/errorSchema");
+
+const ajv = new Ajv()
+
 // Test for GET request /api/v1/Users
 describe("API test", () => {
   test("To check the following points in get request Users: status code 200, response body (data types), header (Content-type)", async () => {
@@ -9,6 +15,9 @@ describe("API test", () => {
         expect(typeof user.id).toBe("number")
         expect(typeof user.userName).toBe("string")
         expect(typeof user.password).toBe("string")
+        const validate = ajv.compile(userSchema);
+        const valid = validate(user)
+        expect(valid).toBe(true)
     });
   });
 });
@@ -29,6 +38,9 @@ test("The positive test. To check response body, headers, status code", async ()
   expect(typeof response.data.id).toBe("number")
   expect(typeof response.data.userName).toBe("string")
   expect(typeof response.data.password).toBe("string")
+  const validate = ajv.compile(userSchema)
+  const valid = validate(response.data)
+  expect(valid).toBe(true)
 });
 
 test("The negative test. To check 4** status code sending empty request body", async () => {
@@ -48,6 +60,7 @@ test("The negative test. To check 4** status code sending incorrect data types i
       password: 3
     })
   } catch (error) {
+    expect(error.response).toBeDefined()
     expect(error.response.status).toBe(400)
     expect(error.response.headers).toHaveProperty("content-type")
   }
