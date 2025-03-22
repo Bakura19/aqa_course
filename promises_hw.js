@@ -29,7 +29,7 @@ async function getFastNum() {
 }
 getFastNum();
 
-// function getNum _______________________________________________________
+//  Task 2. function getNum _______________________________________________________
 function getNum(num) {
    return new Promise((resolve) => {
       setTimeout(() => {
@@ -46,23 +46,23 @@ async function degreeNum(num) {
 }
 degreeNum();
 
-// function getNum 
-// function getNum() {
-//     return new Promise((resolve) => {
-//        setTimeout(() => {
-//           let randomNum = Math.floor(Math.random() * 5) + 1;
-//           setTimeout(() => {
-//              let randomNum1 = Math.floor(Math.random() * 5) + 6;
-//              resolve([randomNum, randomNum1]);
-//           }, 5000);
-//        }, 3000);
-//     })
-//  }
+//  Task 3. function getNum 
+function getNum() {
+    return new Promise((resolve) => {
+       setTimeout(() => {
+          let randomNum = Math.floor(Math.random() * 5) + 1;
+          setTimeout(() => {
+             let randomNum1 = Math.floor(Math.random() * 5) + 6;
+             resolve([randomNum, randomNum1]);
+          }, 5000);
+       }, 3000);
+    })
+ }
  
  
-//  async function sumRandNums() {
-//     let [randomNum, randomNum1] = await getNum();
-//     let sumRandNums = randomNum + randomNum1;
-//     console.log(sumRandNums);
-//  }
-//  sumRandNums();
+ async function sumRandNums() {
+    let [randomNum, randomNum1] = await getNum();
+    let sumRandNums = randomNum + randomNum1;
+    console.log(sumRandNums);
+ }
+ sumRandNums();
