@@ -1,0 +1,12 @@
+# Игнорируем node_modules
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Игнорируем файлы конфигурации IDE/редактора
+.vscode/
+.idea/
+
+# Игнорируем логи и временные файлы
+*.log
+.DS_Store
