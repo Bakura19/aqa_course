@@ -29,7 +29,7 @@ test.describe('Check redirects per links of Playwright', async() => {
     await expect(pageManager.searchModal.InputFields.SearchDocs).toBeVisible();
   });
 
-  test('', async({ pageManager }) => {
+  test('Check filling in the search field', async({ pageManager }) => {
     await pageManager.navigationMenu.InputFields.Search.click();
     await pageManager.searchModal.InputFields.SearchDocs.fill('dblclick')
     await expect(pageManager.searchModal.InputFields.SearchDocs).toHaveValue('dblclick');
