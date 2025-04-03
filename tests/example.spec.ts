@@ -19,7 +19,7 @@ test.describe('Check redirects per links of Playwright', async() => {
 
   test('Check redirect per Playwright link to home page', async({ pageManager }) => {
     await pageManager.navigationMenu.Buttons.API.click();
-    await expect(pageManager.page).toHaveURL('https://playwright.dev/community/welcome');
+    await expect(pageManager.page).toHaveURL('https://playwright.dev/docs/api/class-playwright');
     await pageManager.navigationMenu.Buttons.Playwright.click();
     await expect(pageManager.page).toHaveURL('https://playwright.dev');
   });
